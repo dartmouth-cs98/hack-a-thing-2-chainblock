@@ -6,6 +6,8 @@ from Chainblock import *
 
 from mining import *
 
+from MerkleTree import *
+
 reward = 10.0
 
 genesis_block = {
@@ -26,6 +28,13 @@ open_transactions = []
 
 owner = 'Blockgeeks'
 
+def process_Merkle(tree, transactions):
+
+    print(transactions)
+    for i in range(0, len(transactions)):
+        something = tree.get_branch(transactions[i])
+        print something
+
 while True:
 
    print("Choose an option")
@@ -36,7 +45,10 @@ while True:
 
    print('Choose 3 for printing the blockchain')
 
+   print('Choose 4 to make a Merkle Tree out of the current Transaction List')
+
    print('Choose anything else if you want to quit')
+
 
 
 
@@ -61,12 +73,14 @@ while True:
        mine_block(blockchain, open_transactions, owner, reward)
 
 
-
    elif user_choice == 3:
 
        print_block(blockchain)
 
-
+   elif user_choice == 4:
+       Merkle = MerkleTree(get_last_value(blockchain)["transaction"])
+       print(Merkle)
+       process_Merkle(Merkle, get_last_value(blockchain)["transaction"])
 
    else:
 
@@ -79,3 +93,4 @@ while True:
        print('Blockchain manipulated')
 
        break
+
