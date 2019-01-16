@@ -73,9 +73,9 @@ while True:
        break
 
 
-   #
-   # if not verify_chain(blockchain):
-   #
-   #     print('Blockchain manipulated')
-   #
-   #     break
+
+   if not verify_chain(blockchain):
+
+       print('Blockchain manipulated')
+
+       break

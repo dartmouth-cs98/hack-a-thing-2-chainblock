@@ -2,6 +2,8 @@
 #   Defines the Basic Methods of the Blockchain according to the first step of the tutorial:
 #   https://blockgeeks.com/guides/python-blockchain-2/
 
+from mining import *
+
 def add_list(blockchain):
 
     blockchain.append([blockchain[-1], 3.2])
@@ -54,7 +56,7 @@ def verify_chain(blockchain):
 
            continue
 
-       elif block[0] == blockchain[index - 1]:
+       elif block['previous_hash'] == hash_block(blockchain[index - 1]):
 
            valid = True
 
