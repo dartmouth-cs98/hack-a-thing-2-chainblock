@@ -11,7 +11,7 @@ def get_last_value(blockchain):
 
     return(blockchain[-1])
 
-def add_value(open_transactions, recipient, sender=owner, amount=1.0):
+def add_value(open_transactions, recipient, sender, amount=1.0):
     transaction = {'sender': sender,
 
                    'recipient': recipient,
