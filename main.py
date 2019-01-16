@@ -32,8 +32,10 @@ def process_Merkle(tree, transactions):
 
     print(transactions)
     for i in range(0, len(transactions)):
-        something = tree.get_branch(transactions[i])
-        print something
+        path = tree.get_branch(transactions[i])
+        if not tree.audit(transactions[i], path):
+            print "Invalid transaction"
+            break
 
 while True:
 
