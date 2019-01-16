@@ -4,13 +4,11 @@
 
 from Chainblock import *
 
-tx_amount = get_transaction_value()
-
-add_value(tx_amount)
-
 user_input = input("Give the first element of the Blockchain")
 
 blockchain = [user_input]
+
+print("hello")
 
 while True:
 

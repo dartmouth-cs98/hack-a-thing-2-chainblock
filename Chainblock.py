@@ -33,30 +33,30 @@ def print_block(blockchain):
 
        print(block)
 
-       def verify_chain():
+def verify_chain(blockchain):
 
-           index = 0
+   index = 0
+
+   valid = True
+
+   for block in blockchain:
+
+       if index == 0:
+
+           index += 1
+
+           continue
+
+       elif block[0] == blockchain[index - 1]:
 
            valid = True
 
-           for block in blockchain:
+       else:
 
-               if index == 0:
+           valid = False
 
-                   index += 1
+           break
 
-                   continue
+       index += 1
 
-               elif block[0] == blockchain[index - 1]:
-
-                   valid = True
-
-               else:
-
-                   valid = False
-
-                   break
-
-               index += 1
-
-           return valid
+   return valid
