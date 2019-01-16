@@ -33,6 +33,7 @@ def process_Merkle(tree, transactions):
     print(transactions)
     for i in range(0, len(transactions)):
         path = tree.get_branch(transactions[i])
+        print(path)
         if not tree.audit(transactions[i], path):
             print "Invalid transaction"
             break
@@ -60,24 +61,34 @@ while True:
 
    if user_choice == 1:
 
-       tx_data = get_transaction_value()
+       if len(open_transactions) >= 7:
+           print("Too many transactions. Please mine a block to create a full merkel tree")
 
-       recipient, amount = tx_data
+       else:
+           tx_data = get_transaction_value()
 
-       add_value(open_transactions, recipient, amount=amount)
+           recipient, amount = tx_data
 
-       print(open_transactions)
+           add_value(blockchain, open_transactions, recipient, amount=amount)
 
+           print(open_transactions)
 
 
    elif user_choice == 2:
 
-       mine_block(blockchain, open_transactions, owner, reward)
+       if len(open_transactions) < 7:
+
+           print(" Please add more transactions until a Merkel Tree is ready to be created")
+
+           print(" You need " + str(7-len(open_transactions)) + " more")
+
+       if len(open_transactions) == 7:
+           mine_block(blockchain, open_transactions, owner, reward)
 
 
    elif user_choice == 3:
-
        print_block(blockchain)
+
 
    elif user_choice == 4:
        Merkle = MerkleTree(get_last_value(blockchain)["transaction"])

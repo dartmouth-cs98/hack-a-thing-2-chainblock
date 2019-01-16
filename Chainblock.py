@@ -4,16 +4,23 @@
 
 from mining import *
 
+import time
+
 def get_last_value(blockchain):
 
     return(blockchain[-1])
 
-def add_value(open_transactions, recipient, sender="BlockGeeks", amount=1.0):
+def add_value(blockchain, open_transactions, recipient, sender="BlockGeeks", amount=1.0):
     transaction = {'sender': sender,
 
                    'recipient': recipient,
 
-                   'amount': amount}
+                   'amount': amount,
+
+                   'time': int(time.time()),
+
+                   'index': blockchain[-1]["index"] + 1
+                   }
 
     open_transactions.append(transaction)
 

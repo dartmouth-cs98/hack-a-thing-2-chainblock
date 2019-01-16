@@ -4,6 +4,11 @@ import hashlib
 
 import json
 
+import time
+
+import pickle
+
+from MerkleTree import MerkleTree
 
 def hash_block(block):
 
@@ -37,34 +42,42 @@ def pow(blockchain, open_transactions):
 
 def mine_block(blockchain, open_transactions, owner, reward):
 
-   last_block = blockchain[-1]
+    last_block = blockchain[-1]
 
-   hashed_block = hash_block(last_block)
+    hashed_block = hash_block(last_block)
 
-   nonce = pow(blockchain, open_transactions)
+    nonce = pow(blockchain, open_transactions)
 
-   reward_transaction = {
+    reward_transaction = {
 
            'sender': 'MINING',
 
            'recipient': owner,
 
-           'amount': reward
+           'amount': reward,
 
+           'time': int(time.time()),
+
+           'index': last_block["index"] + 1
        }
 
-   open_transactions.append(reward_transaction)
+    open_transactions.append(reward_transaction)
 
-   block = {
+    with open('ChainBlock.pkl', 'wb') as output:
+        pickle.dump(open_transactions, output, pickle.HIGHEST_PROTOCOL)
+
+    block = {
 
        'previous_hash': hashed_block,
 
        'index': len(blockchain),
 
-       'transaction': open_transactions,
+       'transaction': MerkleTree(open_transactions),
 
        'nonce': nonce
 
-   }
+    }
 
-   blockchain.append(block)
+    open_transactions = []
+
+    blockchain.append(block)
