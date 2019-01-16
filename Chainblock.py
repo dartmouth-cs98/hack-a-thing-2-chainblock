@@ -9,21 +9,28 @@ def add_list(blockchain):
 
 def get_last_value(blockchain):
 
-   return(blockchain[-1])
+    return(blockchain[-1])
 
-def add_value(blockchain, transaction_amount, last_transaction=[1]):
+def add_value(open_transactions, recipient, sender=owner, amount=1.0):
+    transaction = {'sender': sender,
 
-   blockchain.append([last_transaction, transaction_amount])
+                   'recipient': recipient,
+
+                   'amount': amount}
+
+    open_transactions.append(transaction)
 
 def get_transaction_value():
+    tx_recipient = input('Enter the recipient of the transaction: ')
 
-   user_value = float(input('Enter your transaction amount '))
-   return user_value
+    tx_amount = float(input('Enter your transaction amount '))
+
+    return tx_recipient, tx_amount
 
 def get_user_choice():
+    user_input = input("Please give your choice here: ")
 
-   user_input = input("Please give your choice here: ")
-   return user_input
+    return user_input
 
 def print_block(blockchain):
 
