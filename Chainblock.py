@@ -4,16 +4,11 @@
 
 from mining import *
 
-def add_list(blockchain):
-
-    blockchain.append([blockchain[-1], 3.2])
-    print(blockchain)
-
 def get_last_value(blockchain):
 
     return(blockchain[-1])
 
-def add_value(open_transactions, recipient, sender, amount=1.0):
+def add_value(open_transactions, recipient, sender="BlockGeeks", amount=1.0):
     transaction = {'sender': sender,
 
                    'recipient': recipient,
@@ -47,6 +42,8 @@ def verify_chain(blockchain):
    index = 0
 
    valid = True
+
+   print(blockchain)
 
    for block in blockchain:
 

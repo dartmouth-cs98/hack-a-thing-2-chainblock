@@ -50,7 +50,7 @@ while True:
 
        recipient, amount = tx_data
 
-       add_value(blockchain, recipient, amount=amount)
+       add_value(open_transactions, recipient, amount=amount)
 
        print(open_transactions)
 

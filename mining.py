@@ -21,7 +21,6 @@ def valid_proof(transactions, last_hash, nonce):
    return guess_hash[0:2] == '00'
 
 
-
 def pow(blockchain, open_transactions):
 
    last_block = blockchain[-1]
