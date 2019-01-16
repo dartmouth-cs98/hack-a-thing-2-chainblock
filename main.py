@@ -4,21 +4,36 @@
 
 from Chainblock import *
 
-user_input = input("Give the first element of the Blockchain")
+from mining import *
 
-blockchain = [user_input]
+reward = 10.0
 
-print("hello")
+genesis_block = {
 
+   'previous_hash': '',
+
+   'index': 0,
+
+   'transaction': [],
+
+   'nonce': 23
+
+}
+
+blockchain = [genesis_block]
+
+open_transactions = []
+
+owner = 'Blockgeeks'
 while True:
 
    print("Choose an option")
 
    print('Choose 1 for adding a new transaction')
 
-   print('Choose 2 for printing the blockchain')
+   print('Choose 2 for mining the blockchain')
 
-   print('Choose 3 if you want to manipulate the data')
+   print('Choose 3 for printing the blockchain')
 
    print('Choose anything else if you want to quit')
 
@@ -30,23 +45,25 @@ while True:
 
    if user_choice == 1:
 
-       tx_amount = get_transaction_value()
+       tx_data = get_transaction_value()
 
-       add_value(blockchain, tx_amount, get_last_value(blockchain))
+       recipient, amount = tx_data
+
+       add_value(blockchain, recipient, amount=amount)
+
+       print(open_transactions)
 
 
 
    elif user_choice == 2:
 
-       print_block(blockchain)
+       mine_block(blockchain, open_transactions, owner, reward)
 
 
 
    elif user_choice == 3:
 
-       if len(blockchain) >= 1:
-
-           blockchain[0] = 2
+       print_block(blockchain)
 
 
 
