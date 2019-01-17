@@ -42,3 +42,6 @@ since the implementation of the hash in our tutorial used .json and our implemen
 Merkle tree was not .json serializable. This limited the number of Merkle Trees we could create. 
 At the same time, we attempted to store the blockchain object for demonstration 
 later but had difficulty using the python .pkl library.
+
+To view the current functionality, create 7 transactions using option 1, mine the 
+block using option 2, and validate any transaction in the mined block's merkle tree using option 4.
