@@ -6,8 +6,6 @@ import json
 
 import time
 
-import pickle
-
 from MerkleTree import MerkleTree
 
 def hash_block(block):
@@ -40,7 +38,7 @@ def pow(blockchain, open_transactions):
 
    return nonce
 
-def mine_block(blockchain, open_transactions, owner, reward):
+def mine_block(blockchain, open_transactions, historical_transactions, owner, reward):
 
     last_block = blockchain[-1]
 
@@ -63,8 +61,8 @@ def mine_block(blockchain, open_transactions, owner, reward):
 
     open_transactions.append(reward_transaction)
 
-    with open('ChainBlock.pkl', 'wb') as output:
-        pickle.dump(open_transactions, output, pickle.HIGHEST_PROTOCOL)
+    for transaction in open_transactions:
+        historical_transactions.append(transaction)
 
     block = {
 
@@ -78,6 +76,5 @@ def mine_block(blockchain, open_transactions, owner, reward):
 
     }
 
-    open_transactions = []
-
     blockchain.append(block)
+

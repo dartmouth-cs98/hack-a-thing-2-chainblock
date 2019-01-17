@@ -5,6 +5,7 @@ import os
 import math
 import hashlib
 import copy
+from json import dumps
 
 class MerkleTree:
     class Node:
@@ -34,6 +35,9 @@ class MerkleTree:
                 return self.dad
             return self.mom
 
+        def json(self):
+            return dumps({'type': 'A Merkel Node'})
+
     def __init__(self, items):
         if len(items) <= 0:
             raise Exception("items must contain at least 1" + \
@@ -51,6 +55,9 @@ class MerkleTree:
         leaf = self.Node(None, None, data)
         leaf.height = 0
         return leaf
+
+    def json(self):
+        return dumps({'type': 'A Merkel Tree'})
 
     def _get_branch_by_hash(self, hash_):
         """ Returns an authentication path as a list in order from the top
