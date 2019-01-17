@@ -25,7 +25,7 @@ def add_value(blockchain, open_transactions, recipient, sender="BlockGeeks", amo
     open_transactions.append(transaction)
 
 def get_transaction_value():
-    tx_recipient = input('Enter the recipient of the transaction: ')
+    tx_recipient = raw_input('Enter the recipient of the transaction: ')
 
     tx_amount = float(input('Enter your transaction amount '))
 

@@ -54,6 +54,8 @@ while True:
 
    print('Choose 4 to confirm that a transaction in the history is in the blockchain')
 
+   print('Choose 5 to quit')
+
    print('Choose anything else if you want to quit')
 
    user_choice = get_user_choice()
@@ -132,8 +134,14 @@ while True:
                    print ('Transaction valid and in BlockChain!')
                else:
                    print ('Transaction Failed - that is weird.')
-   else:
+
+   elif user_choice == 5:
        break
+
+   else:
+       print ("Invalid Option. Please Select a different one")
+
+
 
 
 
